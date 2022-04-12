@@ -4,12 +4,12 @@
 
 FROM alpine
 
-ARG LIBEV_VERSION=v3.3.4
+ARG LIBEV_VERSION=v3.3.5
 
 ENV SERVER_ADDR 0.0.0.0
 ENV SERVER_PORT 8388
 ENV PASSWORD=
-ENV METHOD aes-256-gcm
+ENV METHOD chacha20-ietf-poly1305
 ENV TIMEOUT 300
 ENV LISTEN_ADDR 127.0.0.1
 ENV SS_ARGS=
@@ -57,6 +57,6 @@ RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh \
  && chmod +r /etc/privoxy/config \
  && chmod +r /etc/privoxy/gfwlist.action
 
-EXPOSE 8118 1080
+EXPOSE 8118 7070
 
 ENTRYPOINT ["docker-entrypoint.sh"]

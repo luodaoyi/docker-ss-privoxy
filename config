@@ -21,8 +21,20 @@ enforce-blocks 0
  
 buffer-limit 4096
 enable-proxy-authentication-forwarding 0
- 
-# forward-socks5 / 127.0.0.1:1080 .
+  
+#启用这段全局代理模式#####################################
+##下面一行表示将所有网址转发给本地7070端口，也就是本地的SS客户端所开放的端口。
+#forward-socks5 / 127.0.0.1:7070 .
+#启动这段只有部分网址走代理###############################
+forward / .
+#下面这一段表示需要走代理的规则
+forward-socks5 .dropbox*.com 127.0.0.1:7070 .
+forward-socks5 .*google*.* 127.0.0.1:7070 .
+forward-socks5 .*facebook*.* 127.0.0.1:7070 .
+forward-socks5 .*twitter*.* 127.0.0.1:7070 .
+forward-socks5 .*youtube*.* 127.0.0.1:7070 .
+##########################################################
+
 forwarded-connect-retries 0
  
 accept-intercepted-requests 0
